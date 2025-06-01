@@ -258,21 +258,22 @@
     </div>
 
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-        import { getFirestore, setDoc, getDoc, doc, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-firestore.js";
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getFirestore, setDoc, getDoc, doc, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyC1RCO59Qr1ogsZ1GNwxY9O2KGgMaFMyUM",
-            authDomain: "mafia-5c957.firebaseapp.com",
-            databaseURL: "https://mafia-5c957-default-rtdb.firebaseio.com",
-            projectId: "mafia-5c957",
-            storageBucket: "mafia-5c957.firebasestorage.app",
-            messagingSenderId: "979859367108",
-            appId: "1:979859367108:web:6f94ed2e25ca82d762d591"
-        };
+    apiKey: "AIzaSyDHQBI9oATtsM7nrT2WIl5MCjgm9tmI_cU",
+    authDomain: "mafianew-39cd5.firebaseapp.com",
+    projectId: "mafianew-39cd5",
+    storageBucket: "mafianew-39cd5.firebasestorage.app",
+    messagingSenderId: "260530232244",
+    appId: "1:260530232244:web:6a2c9a9e7d2e748511f0e1",
+    measurementId: "G-H85WZZXZJ5"
+  };
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+
         let rowNumbers = document.createElement("div");
 rowNumbers.style.display = "flex";
 rowNumbers.style.justifyContent = "space-between";
