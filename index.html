@@ -62,24 +62,51 @@
     border-radius: 50%;
 }
 
+/* 이미지 밝기 설정 */
 .button-1 {
     background-image: url("1번.png");
+    filter: brightness(1.1);  /* 1번은 1.1 */
 }
+
 .button-2 {
     background-image: url("2번.png");
+    filter: brightness(1.2);
 }
+
 .button-3 {
     background-image: url("3번.png");
+    filter: brightness(1.2);
 }
+
 .button-a {
     background-image: url("A.png");
+    filter: brightness(1.2);
 }
+
 .button-b {
     background-image: url("B.png");
+    filter: brightness(1.2);
 }
+
 .button-c {
     background-image: url("C.png");
+    filter: brightness(1.2);
 }
+
+/* 그 외 패턴 이미지에도 brightness 적용 */
+.pattern-image[src*="1번.png"] {
+    filter: brightness(1.1);
+}
+.pattern-image[src*="2번.png"],
+.pattern-image[src*="3번.png"],
+.pattern-image[src*="A.png"],
+.pattern-image[src*="B.png"],
+.pattern-image[src*="C.png"],
+.pattern-image[src*="D.png"],
+.pattern-image[src*="0번.png"] {
+    filter: brightness(1.2);
+}
+
 
 
 
