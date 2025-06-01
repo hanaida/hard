@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>떡치기-돼지</title>
+    <title>떡치기-통합</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -236,7 +236,7 @@
 </head>
 <body>
     <div id="timer-bar"></div>
-    <h1>떡치기-돼지</h1>
+    <h1>떡치기-통합</h1>
 
     <div id="start-buttons">
         <p id="user-info">사용자 정보를 불러오는 중...</p>
@@ -245,7 +245,7 @@
         <div style="display: flex; justify-content: center; gap: 10px;">
             <button id="start-button">게임 시작</button>
             <button id="nickname-button">닉네임 변경</button>
-            <button id="pig-button">토끼</button>
+            <button id="pig-button">일반</button>
         </div>
         
 
@@ -317,7 +317,7 @@ rowNumbers.style.top = "100px"; // 원하는 만큼 올리기
             document.getElementById("start-button").addEventListener("click", startGame);
              // 돼지 버튼 클릭 시 URL 이동
              document.getElementById("pig-button").addEventListener("click", function () {
-                window.location.href = "https://hanaida.github.io/rabbit/";
+                window.location.href = "https://hanaida.github.io/mafia42/";
             });
         });
 
@@ -346,8 +346,8 @@ rowNumbers.style.top = "100px"; // 원하는 만큼 올리기
 
     const roundRanking = roundSnapshot.empty 
         ? "아직 랭킹 정보가 없습니다."
-        : `<span style="color: red; font-weight: bold; font-size: 35px;">돼지의 전당</span><br><br>
-           <span style="font-size: 20px; font-weight: bold;">🐷 라운드 부문</span><br><br>` + 
+        : `<span style="color: red; font-weight: bold; font-size: 35px;">명예의 전당</span><br><br>
+           <span style="font-size: 20px; font-weight: bold;">라운드 부문</span><br><br>` + 
           Array.from(roundSnapshot.docs, (doc, index) => 
               `${index + 1}위: ${doc.data().nickname} - ${doc.data().round} round`
           ).join("<br>");
