@@ -263,7 +263,8 @@
 </head>
 <body>
     <div id="timer-bar"></div>
-    <h1>떡치기-통합</h1>
+    <h1 id="main-title">떡치기-통합</h1>
+
 
     <div id="hp-bar" style="margin-top: 10px; font-size: 20px; color: darkred;">
     ❤️❤️❤️❤️❤️
@@ -512,11 +513,14 @@ function startGame() {
         return;
     }
 
+    // 제목 숨기기
+    document.getElementById("main-title").style.display = "none";
+
     gameActive = true;
     round = 0;
     inputSequence = "";
-    hp = 5; // 체력 초기화
-    renderHP(); // 체력 UI 초기화
+    hp = 5;
+    renderHP();
     document.getElementById("start-buttons").style.display = "none";
     generateQuestion();
 
@@ -524,6 +528,7 @@ function startGame() {
         console.log("자동 재생이 차단됨. 유저 입력 후 재생 필요", error);
     });
 }
+
 
 
 
