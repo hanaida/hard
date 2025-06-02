@@ -265,6 +265,11 @@
     <div id="timer-bar"></div>
     <h1>떡치기-통합</h1>
 
+    <div id="hp-bar" style="margin-top: 10px; font-size: 20px; color: darkred;">
+    ❤️❤️❤️❤️❤️
+</div>
+
+
     <div id="start-buttons">
         <p id="user-info">사용자 정보를 불러오는 중...</p>
         
@@ -311,7 +316,7 @@ rowNumbers.style.top = "100px"; // 원하는 만큼 올리기
 // rowNumbers.style.width = "180px"; // 고정 폭 제거 또는 주석 처리
 
 
-
+        let hp = 5; // 체력 5개로 시작
         let gameActive = false;
         let round = 0;
         let currentAnswer = "";
@@ -319,6 +324,12 @@ rowNumbers.style.top = "100px"; // 원하는 만큼 올리기
         let colorsPig = ["1", "2", "3"];
         let timer;
         let nickname = localStorage.getItem("nickname");
+        
+        function renderHP() {
+            const hpBar = document.getElementById("hp-bar");
+            hpBar.innerHTML = "❤️".repeat(hp) + "🖤".repeat(5 - hp);
+        }
+
 
         function promptNickname() {
             if (!nickname) {
@@ -504,15 +515,16 @@ function startGame() {
     gameActive = true;
     round = 0;
     inputSequence = "";
+    hp = 5; // 체력 초기화
+    renderHP(); // 체력 UI 초기화
     document.getElementById("start-buttons").style.display = "none";
     generateQuestion();
 
-    // 게임이 시작될 때 음악 재생
     backgroundMusic.play().catch(error => {
         console.log("자동 재생이 차단됨. 유저 입력 후 재생 필요", error);
     });
-    
 }
+
 
 
         function getPatternLength() {
@@ -781,7 +793,7 @@ function handleInput(input) {
 
     let normalizedAnswer = currentAnswer
         .replace(/C|0/g, "C0")
-        .replace(/D/g, "1");  // ✅ D도 입력 기준에 맞게 통일
+        .replace(/D/g, "1");
 
     // 입력된 만큼 패턴 요소에 효과 적용
     let patternElements = document.querySelectorAll(".pattern");
@@ -790,7 +802,7 @@ function handleInput(input) {
         targetElement.classList.add("correct");
     }
 
-    // 정답과 일치한 경우: 다음 라운드
+    // 정답 입력 완료
     if (inputSequence === normalizedAnswer) {
         clearTimeout(timer);
         round++;
@@ -809,15 +821,34 @@ function handleInput(input) {
             generateQuestion();
         }, 1000);
     }
-    // 오답 입력 시: 게임 종료
+
+    // 오답일 경우 → 체력 깎고 다음 라운드로 넘어감
     else if (!normalizedAnswer.startsWith(inputSequence)) {
-        gameOver();
+        hp--;
+        renderHP();
+
+        round++; // 오답이어도 라운드는 올라감
+        document.getElementById("output").innerHTML = `fail! Round: ${round}`;
+
+        if (hp <= 0) {
+            gameOver(); // 체력 0이면 즉시 게임 종료
+            return;
+        }
+
+        nextRoundPending = true;
+        setTimeout(() => {
+            nextRoundPending = false;
+            generateQuestion(); // 다음 문제 출제
+        }, 1000);
     }
-    // 아직 정답 중간일 경우: 버튼 이미지 갱신
+
+    // 아직 정답 중간일 경우
     else {
-        renderButtons(); // ✅ 현재 입력 위치 기준으로 버튼 이미지 갱신
+        renderButtons(); // 버튼 이미지 갱신
     }
 }
+
+
 
 
 
