@@ -717,25 +717,45 @@ function renderButtons() {
 
     // === 🔁 이미지 및 투명 처리 ===
     if (isLetterGroup) {
-        // 문자 그룹
-        btn1.style.backgroundImage = 'url("D.png")';
-        btn2.style.backgroundImage = 'none';
-        btn3.style.backgroundImage = 'none';
+    // 문자 그룹인 경우
+    btn1.style.backgroundImage = 'none';
+    btn1.style.backgroundColor = 'gray';
 
-        btnA.style.backgroundImage = 'url("A.png")';
-        btnB.style.backgroundImage = 'url("B.png")';
-        btnC.style.backgroundImage = 'url("C.png")';
-    } else {
-        // 숫자 그룹
-        btn1.style.backgroundImage = 'url("1번.png")';
-        btn2.style.backgroundImage = 'url("2번.png")';
-        btn3.style.backgroundImage = 'url("3번.png")';
+    btn2.style.backgroundImage = 'none';
+    btn2.style.backgroundColor = 'gray';
 
-        btnA.style.backgroundImage = 'none';
-        btnB.style.backgroundImage = 'none';
-        btnC.style.backgroundImage = 'url("0번.png")';
-    }
+    btn3.style.backgroundImage = 'none';
+    btn3.style.backgroundColor = 'gray';
+
+    btnA.style.backgroundImage = 'url("A.png")';
+    btnA.style.backgroundColor = 'transparent';
+
+    btnB.style.backgroundImage = 'url("B.png")';
+    btnB.style.backgroundColor = 'transparent';
+
+    btnC.style.backgroundImage = 'url("C.png")';
+    btnC.style.backgroundColor = 'transparent';
+} else {
+    // 숫자 그룹인 경우
+    btn1.style.backgroundImage = 'url("1번.png")';
+    btn1.style.backgroundColor = 'transparent';
+
+    btn2.style.backgroundImage = 'url("2번.png")';
+    btn2.style.backgroundColor = 'transparent';
+
+    btn3.style.backgroundImage = 'url("3번.png")';
+    btn3.style.backgroundColor = 'transparent';
+
+    btnA.style.backgroundImage = 'none';
+    btnA.style.backgroundColor = 'gray';
+
+    btnB.style.backgroundImage = 'none';
+    btnB.style.backgroundColor = 'gray';
+
+    btnC.style.backgroundImage = 'url("0번.png")';
+    btnC.style.backgroundColor = 'transparent';
 }
+
 
 
 
