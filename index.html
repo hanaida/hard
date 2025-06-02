@@ -834,7 +834,7 @@ function handleInput(input) {
         renderHP();
 
         round++; // 오답이어도 라운드는 올라감
-        document.getElementById("output").innerHTML = `fail! Round: ${round}`;
+        document.getElementById("output").innerHTML = `fail! Round: ${round}, 남은 체력: ${hp}`;
 
         if (hp <= 0) {
             gameOver(); // 체력 0이면 즉시 게임 종료
@@ -855,6 +855,24 @@ function handleInput(input) {
 }
 
 
+function handleTimeout() {
+    hp--;
+    renderHP();
+
+    round++;
+    document.getElementById("output").innerHTML = `fail! Round: ${round}, 남은 체력: ${hp}`;
+
+    if (hp <= 0) {
+        gameOver(); // 체력 0이면 진짜 게임 오버
+        return;
+    }
+
+    nextRoundPending = true;
+    setTimeout(() => {
+        nextRoundPending = false;
+        generateQuestion(); // 다음 문제 출제
+    }, 1000);
+}
 
 
 
@@ -871,7 +889,8 @@ function handleInput(input) {
                 });
             });
 
-            timer = setTimeout(gameOver, 5000);
+            timer = setTimeout(handleTimeout, 5000); // ✅ 체력 깎고 다음 문제
+
         }
 
         function resetTimerBar() {
